@@ -46,20 +46,22 @@ const ProductDetailsScreen = () => {
     return <Text>Failed to fetch products</Text>; //This displays on the product page when there was an issue. 
   }
 
-  return (
+  return (// This section links to the creation page of an item/product to make changes and edits
     <View style={styles.container}>
       <Stack.Screen
         options={{
           title: 'Menu',
           headerRight: () => (
-            <Link href={`/(admin)/menu/create?id=${id}`} asChild>
+            //This links directly to the item being edited, thus the id variable
+            <Link href={`/(admin)/menu/create?id=${id}`} asChild> 
               <Pressable>
                 {({ pressed }) => (
-                  <FontAwesome
+                  <FontAwesome //This section uses a pencil for the pressable to imply 'edit'
+                  //It links to the page used to edit and items information, i.e., price, image, name
                     name="pencil"
-                    size={25}
-                    color={Colors.light.tint}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
+                    size={25} //icon size
+                    color={Colors.light.tint} //icon color
+                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }} //icon placement
                   />
                 )}
               </Pressable>
@@ -67,16 +69,16 @@ const ProductDetailsScreen = () => {
           ),
         }}
       />
-    
-      <Stack.Screen options={{ title: product.name }} /> 
 
+      <Stack.Screen options={{ title: product.name }} /** This places the products name at the top of the user's screen*//> 
       <RemoteImage
         path={product?.image}
         fallback={defaultPizzaImage}
         style={styles.image}
+        //This section grabs the image of the product to display, with the fallback being the place holder if something isn't displayed
       />
-
-      <Text style={styles.title}>{product.name}</Text>
+      {/**This displays the product name and price */}
+      <Text style={styles.title}>{product.name}</Text> 
       <Text style={styles.price}>${product.price}</Text>
     </View>
   );

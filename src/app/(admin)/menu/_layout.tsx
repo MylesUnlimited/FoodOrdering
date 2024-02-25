@@ -16,7 +16,7 @@ export default function MenuStack() {
         options={{
           title: 'Menu test', 
           headerRight: () => (
-            <Link href="/(admin)/menu/create" asChild> 
+            <Link href="/(admin)/menu/create" asChild> {/**link to creation of product page */}
             
               <Pressable> 
                 {({ pressed }) => (
