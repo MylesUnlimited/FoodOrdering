@@ -1,3 +1,4 @@
+// Importing necessary components and functions from libraries and files
 import { Stack, useLocalSearchParams, useRouter } from 'expo-router';
 import {
   View,
@@ -15,46 +16,64 @@ import { PizzaSize } from '@/types';
 import { useProduct } from '@/api/products';
 import RemoteImage from '@/components/RemoteImage';
 
+// Array of pizza sizes
 const sizes: PizzaSize[] = ['S', 'M', 'L', 'XL'];
 
+// Defining the ProductDetailsScreen component
 const ProductDetailsScreen = () => {
+  // Fetching id parameter from local search params
   const { id: idString } = useLocalSearchParams();
+  // Parsing the id to float
   const id = parseFloat(typeof idString === 'string' ? idString : idString[0]);
+  // Fetching product data based on id
   const { data: product, error, isLoading } = useProduct(id);
 
+  // Accessing addItem function from cart provider
   const { addItem } = useCart();
 
+  // Accessing router from expo-router
   const router = useRouter();
 
+  // State for selected pizza size
   const [selectedSize, setSelectedSize] = useState<PizzaSize>('M');
 
+  // Function to add selected product to cart
   const addToCart = () => {
+    // Checking if product data is available
     if (!product) {
       return;
     }
+    // Adding selected product with size to cart
     addItem(product, selectedSize);
+    // Navigating to cart screen
     router.push('/cart');
   };
 
+  // Rendering loading indicator if data is still loading
   if (isLoading) {
     return <ActivityIndicator />;
   }
 
+  // Rendering error message if there's an error fetching products
   if (error) {
     return <Text>Failed to fetch products</Text>;
   }
 
+  // Rendering the product details screen
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ title: product.name }} />
 
+      {/* Rendering the product image */}
       <RemoteImage
         path={product?.image}
         fallback={defaultPizzaImage}
         style={styles.image}
       />
 
+      {/* Text prompting to select size */}
       <Text>Select size</Text>
+      {/* Rendering available sizes */}
       <View style={styles.sizes}>
         {sizes.map((size) => (
           <Pressable
@@ -83,12 +102,15 @@ const ProductDetailsScreen = () => {
         ))}
       </View>
 
+      {/* Displaying product price */}
       <Text style={styles.price}>${product.price}</Text>
+      {/* Button to add product to cart */}
       <Button onPress={addToCart} text="Add to cart" />
     </View>
   );
 };
 
+// Styles for the ProductDetailsScreen component
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
@@ -124,4 +146,5 @@ const styles = StyleSheet.create({
   },
 });
 
+// Exporting the ProductDetailsScreen component
 export default ProductDetailsScreen;
