@@ -10,7 +10,7 @@ const ExpoSecureStoreAdapter = { /* declares a constant named expoSecureStoreAda
   setItem: (key: string, value: string) => { /* defines a function setItem  that takes key and value as parameters. both of tyoe string*/
     SecureStore.setItemAsync(key, value); /* store the given value associated with the provided key in the secure store */
   },
-  removeItem: (key: string) => { /* defines a fucntion named removeItem that takes a key parameter of type string */
+  removeItem: (key: string) => { /* defines a function named removeItem that takes a key parameter of type string */
     SecureStore.deleteItemAsync(key); /*delets the item associated eweith the provided key from the secure store */
   },
 };

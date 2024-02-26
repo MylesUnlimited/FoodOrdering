@@ -5,19 +5,19 @@ import { Tables } from '../types';
 import { defaultPizzaImage } from './ProductListItem';
 import RemoteImage from './RemoteImage';
 
-type OrderItemListItemProps = {
-  item: { products: Tables<'products'> } & Tables<'order_items'>;
-};
+type OrderItemListItemProps = {/*defines a typescript type which describes the properties that they expect to receive */
+  item: { products: Tables<'products'> } & Tables<'order_items'>; 
+}; 
 
-const OrderItemListItem = ({ item }: OrderItemListItemProps) => {
+const OrderItemListItem = ({ item }: OrderItemListItemProps) => {/* defines a component that takes an object as its argument  */
   return (
-    <View style={styles.container}>
+    <View style={styles.container}> 
       <RemoteImage
         path={item.products.image}
         fallback={defaultPizzaImage}
         style={styles.image}
         resizeMode="contain"
-      />
+      /> 
 
       <View style={{ flex: 1 }}>
         <Text style={styles.title}>{item.products.name}</Text>
@@ -33,7 +33,7 @@ const OrderItemListItem = ({ item }: OrderItemListItemProps) => {
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ /*defines style for various components */
   container: {
     backgroundColor: 'white',
     borderRadius: 10,
@@ -73,4 +73,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default OrderItemListItem;
+export default OrderItemListItem; /*exports the OrderItemListItem component as the default export, which will allow it to be imported and used in other parts of the app */

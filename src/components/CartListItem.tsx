@@ -7,12 +7,12 @@ import { useCart } from '../providers/CartProvider';
 import { defaultPizzaImage } from './ProductListItem';
 import RemoteImage from './RemoteImage';
 
-type CartListItemProps = {
+type CartListItemProps = {/* defines a typescript type and then specifies the props expected by the component */
   cartItem: CartItem;
 };
 
-const CartListItem = ({ cartItem }: CartListItemProps) => {
-  const { updateQuantity } = useCart();
+const CartListItem = ({ cartItem }: CartListItemProps) => { /*declares a functional component that takes an object as a argument and extracts the cartItem property */
+  const { updateQuantity } = useCart();/*updates rhe quantity of items in a cart */
 
   return (
     <View style={styles.container}>
@@ -46,11 +46,11 @@ const CartListItem = ({ cartItem }: CartListItemProps) => {
           style={{ padding: 5 }}
         />
       </View>
-    </View>
+    </View>/* represents the structure of the componenet which display images, name of products, and has styling to the text */
   );
 };
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ /*defines styles for different components */
   container: {
     backgroundColor: 'white',
     borderRadius: 10,
@@ -90,4 +90,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default CartListItem;
+export default CartListItem; /*exports cartlistitem as a default export which makes it available to use in other parts of the app */

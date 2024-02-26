@@ -6,7 +6,7 @@ import { ExternalLink } from './ExternalLink';
 import { MonoText } from './StyledText';
 import { Text, View } from './Themed';
 
-export default function EditScreenInfo({ path }: { path: string }) {
+export default function EditScreenInfo({ path }: { path: string }) { /*exports a default function which takes an object as its argument and extracts the path property */
   return (
     <View>
       <View style={styles.getStartedContainer}>
@@ -47,11 +47,11 @@ export default function EditScreenInfo({ path }: { path: string }) {
           </Text>
         </ExternalLink>
       </View>
-    </View>
+    </View> /*represents the structure of the component which has some text and an external link */
   );
 }
 
-const styles = StyleSheet.create({
+const styles = StyleSheet.create({ /*deines the styles for various components */
   getStartedContainer: {
     alignItems: 'center',
     marginHorizontal: 50,
